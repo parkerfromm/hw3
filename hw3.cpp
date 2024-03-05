@@ -476,14 +476,15 @@ Mat<double> huckle::get_H()
 
 void huckle::print_H()
 {
-    for (int i = 0; i < N; i++)
-    {
-        for (int j = 0; j < N; j++)
-        {
-            cout << H.at(i, j) << " ";
-        }
-        cout << endl;
-    }
+    // for (int i = 0; i < N; i++)
+    // {
+    //     for (int j = 0; j < N; j++)
+    //     {
+    //         cout << H.at(i, j) << " ";
+    //     }
+    //     cout << endl;
+    // }
+    H.print();
 }
 
 void huckle::calc_HAM()
@@ -559,6 +560,8 @@ int main()
     // H2.print_S();
     H2.calc_X();
     H2.calc_H();
+    cout << " Hamiltonian Matrix for H2" << endl;
+    H2.print_H();
     // H2.print_X();
     H2.calc_HAM();
     // H2.print_HAM();
@@ -581,6 +584,8 @@ int main()
     C2H2.calc_S();
     C2H2.calc_X();
     C2H2.calc_H();
+    cout << " Hamiltonian Matrix for C2H2" << endl;
+    C2H2.print_H();
     C2H2.calc_HAM();
     C2H2.calc_e();
 
@@ -590,9 +595,12 @@ int main()
     C2H4.calc_S();
     C2H4.calc_X();
     C2H4.calc_H();
+    cout << " Hamiltonian Matrix for C2H4" << endl;
+    C2H4.print_H();
     C2H4.calc_HAM();
     C2H4.calc_e();
 
+    cout << endl;
     double C2H2_energy = C2H2.get_total_energy();
     cout << "The total energy of C2H2 is: " << C2H2_energy << " eV." << endl;
 
