@@ -462,6 +462,17 @@ tests1/CMakeFiles/smoke_test.dir/smoke_test.cpp.o: /home/pfromm/chem279/hw3/arma
   tmp/include/armadillo_bits/spglue_merge_bones.hpp \
   tmp/include/armadillo_bits/spglue_relational_bones.hpp \
   tmp/include/armadillo_bits/spsolve_factoriser_bones.hpp \
+  tmp/include/armadillo_bits/newarp_EigsSelect.hpp \
+  tmp/include/armadillo_bits/newarp_DenseGenMatProd_bones.hpp \
+  tmp/include/armadillo_bits/newarp_SparseGenMatProd_bones.hpp \
+  tmp/include/armadillo_bits/newarp_SparseGenRealShiftSolve_bones.hpp \
+  tmp/include/armadillo_bits/newarp_DoubleShiftQR_bones.hpp \
+  tmp/include/armadillo_bits/newarp_GenEigsSolver_bones.hpp \
+  tmp/include/armadillo_bits/newarp_SymEigsSolver_bones.hpp \
+  tmp/include/armadillo_bits/newarp_SymEigsShiftSolver_bones.hpp \
+  tmp/include/armadillo_bits/newarp_TridiagEigen_bones.hpp \
+  tmp/include/armadillo_bits/newarp_UpperHessenbergEigen_bones.hpp \
+  tmp/include/armadillo_bits/newarp_UpperHessenbergQR_bones.hpp \
   tmp/include/armadillo_bits/debug.hpp \
   tmp/include/armadillo_bits/memory.hpp \
   tmp/include/armadillo_bits/arma_cmath.hpp \
@@ -825,14 +836,36 @@ tests1/CMakeFiles/smoke_test.dir/smoke_test.cpp.o: /home/pfromm/chem279/hw3/arma
   tmp/include/armadillo_bits/spglue_merge_meat.hpp \
   tmp/include/armadillo_bits/spglue_relational_meat.hpp \
   tmp/include/armadillo_bits/spsolve_factoriser_meat.hpp \
+  tmp/include/armadillo_bits/newarp_cx_attrib.hpp \
+  tmp/include/armadillo_bits/newarp_SortEigenvalue.hpp \
+  tmp/include/armadillo_bits/newarp_DenseGenMatProd_meat.hpp \
+  tmp/include/armadillo_bits/newarp_SparseGenMatProd_meat.hpp \
+  tmp/include/armadillo_bits/newarp_SparseGenRealShiftSolve_meat.hpp \
+  tmp/include/armadillo_bits/newarp_DoubleShiftQR_meat.hpp \
+  tmp/include/armadillo_bits/newarp_GenEigsSolver_meat.hpp \
+  tmp/include/armadillo_bits/newarp_SymEigsSolver_meat.hpp \
+  tmp/include/armadillo_bits/newarp_SymEigsShiftSolver_meat.hpp \
+  tmp/include/armadillo_bits/newarp_TridiagEigen_meat.hpp \
+  tmp/include/armadillo_bits/newarp_UpperHessenbergEigen_meat.hpp \
+  tmp/include/armadillo_bits/newarp_UpperHessenbergQR_meat.hpp \
   tmp/include/armadillo_bits/compiler_setup_post.hpp
 
+
+tmp/include/armadillo_bits/newarp_UpperHessenbergQR_meat.hpp:
+
+tmp/include/armadillo_bits/newarp_SymEigsSolver_meat.hpp:
+
+tmp/include/armadillo_bits/newarp_GenEigsSolver_meat.hpp:
+
+tmp/include/armadillo_bits/newarp_SparseGenMatProd_meat.hpp:
 
 tmp/include/armadillo_bits/spglue_merge_meat.hpp:
 
 tmp/include/armadillo_bits/spglue_plus_meat.hpp:
 
 tmp/include/armadillo_bits/spop_repmat_meat.hpp:
+
+tmp/include/armadillo_bits/newarp_DenseGenMatProd_meat.hpp:
 
 tmp/include/armadillo_bits/spop_reverse_meat.hpp:
 
@@ -924,8 +957,6 @@ tmp/include/armadillo_bits/op_chol_meat.hpp:
 
 tmp/include/armadillo_bits/op_find_unique_meat.hpp:
 
-tmp/include/armadillo_bits/op_orth_null_meat.hpp:
-
 tmp/include/armadillo_bits/op_princomp_meat.hpp:
 
 tmp/include/armadillo_bits/op_reverse_meat.hpp:
@@ -1001,8 +1032,6 @@ tmp/include/armadillo_bits/GenCube_meat.hpp:
 tmp/include/armadillo_bits/subview_cube_slices_meat.hpp:
 
 tmp/include/armadillo_bits/Gen_meat.hpp:
-
-tmp/include/armadillo_bits/BaseCube_meat.hpp:
 
 tmp/include/armadillo_bits/Base_meat.hpp:
 
@@ -1150,6 +1179,20 @@ tmp/include/armadillo_bits/fn_shuffle.hpp:
 
 tmp/include/armadillo_bits/fn_cor.hpp:
 
+tmp/include/armadillo_bits/fn_cov.hpp:
+
+tmp/include/armadillo_bits/fn_resize.hpp:
+
+tmp/include/armadillo_bits/spglue_join_meat.hpp:
+
+tmp/include/armadillo_bits/fn_repelem.hpp:
+
+tmp/include/armadillo_bits/fn_repmat.hpp:
+
+tmp/include/armadillo_bits/fn_chol.hpp:
+
+tmp/include/armadillo_bits/fn_strans.hpp:
+
 tmp/include/armadillo_bits/SpValProxy_bones.hpp:
 
 tmp/include/armadillo_bits/fn_polyval.hpp:
@@ -1214,6 +1257,12 @@ tmp/include/armadillo_bits/mtGlueCube_bones.hpp:
 
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/cctype:
 
+tmp/include/armadillo_bits/fn_reshape.hpp:
+
+tmp/include/armadillo_bits/op_fft_bones.hpp:
+
+tmp/include/armadillo_bits/newarp_SymEigsShiftSolver_meat.hpp:
+
 tmp/include/armadillo_bits/op_log_det_meat.hpp:
 
 tmp/include/armadillo_bits/fn_trunc_exp.hpp:
@@ -1256,10 +1305,6 @@ tmp/include/armadillo_bits/Col_bones.hpp:
 
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/tuple:
 
-tmp/include/armadillo_bits/fn_polyfit.hpp:
-
-/home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/map:
-
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/bits/locale_classes.tcc:
 
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/bits/stl_vector.h:
@@ -1285,6 +1330,8 @@ tmp/include/armadillo_bits/fn_randg.hpp:
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/sysroot/usr/include/pthread.h:
 
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/bits/fstream.tcc:
+
+tmp/include/armadillo_bits/newarp_SortEigenvalue.hpp:
 
 tmp/include/armadillo_bits/arma_str.hpp:
 
@@ -1408,6 +1455,8 @@ tmp/include/armadillo_bits/fn_randn.hpp:
 
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/x86_64-conda-linux-gnu/bits/ctype_base.h:
 
+tmp/include/armadillo_bits/newarp_cx_attrib.hpp:
+
 tmp/include/armadillo_bits/typedef_elem_check.hpp:
 
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/cmath:
@@ -1432,6 +1481,8 @@ tmp/include/armadillo_bits/glue_hist_meat.hpp:
 
 tmp/include/armadillo_bits/op_det_bones.hpp:
 
+tmp/include/armadillo_bits/newarp_UpperHessenbergEigen_meat.hpp:
+
 tmp/include/armadillo_bits/op_misc_meat.hpp:
 
 tmp/include/armadillo_bits/op_var_bones.hpp:
@@ -1443,8 +1494,6 @@ tmp/include/armadillo_bits/CubeToMatOp_bones.hpp:
 tmp/include/armadillo_bits/arma_version.hpp:
 
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/sysroot/usr/include/locale.h:
-
-tmp/include/armadillo_bits/fn_resize.hpp:
 
 tmp/include/armadillo_bits/operator_ostream.hpp:
 
@@ -1688,11 +1737,15 @@ tmp/include/armadillo_bits/xvec_htrans_bones.hpp:
 
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/bits/stl_map.h:
 
+tmp/include/armadillo_bits/newarp_DoubleShiftQR_meat.hpp:
+
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/bits/stringfwd.h:
 
 tmp/include/armadillo_bits/gmm_full_bones.hpp:
 
 /home/pfromm/chem279/hw3/armadillo-12.8.0/tests1/smoke_test.cpp:
+
+tmp/include/armadillo_bits/newarp_UpperHessenbergQR_bones.hpp:
 
 tmp/include/armadillo_bits/include_superlu.hpp:
 
@@ -1790,8 +1843,6 @@ tmp/include/armadillo_bits/arma_cmath.hpp:
 
 tmp/include/armadillo_bits/wall_clock_bones.hpp:
 
-/home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/cstdlib:
-
 tmp/include/armadillo_bits/subview_elem1_bones.hpp:
 
 tmp/include/armadillo_bits/mtOp_bones.hpp:
@@ -1812,6 +1863,8 @@ tmp/include/armadillo_bits/op_hist_bones.hpp:
 
 tmp/include/armadillo_bits/sym_helper.hpp:
 
+tmp/include/armadillo_bits/newarp_SymEigsShiftSolver_bones.hpp:
+
 tmp/include/armadillo_bits/fn_det.hpp:
 
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/bits/ostream_insert.h:
@@ -1829,6 +1882,12 @@ tmp/include/armadillo_bits/diskio_bones.hpp:
 tmp/include/armadillo_bits/SpBase_meat.hpp:
 
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/initializer_list:
+
+tmp/include/armadillo_bits/fn_solve.hpp:
+
+tmp/include/armadillo_bits/SizeMat_bones.hpp:
+
+tmp/include/armadillo_bits/newarp_TridiagEigen_meat.hpp:
 
 tmp/include/armadillo_bits/glue_cor_bones.hpp:
 
@@ -1889,8 +1948,6 @@ tmp/include/armadillo_bits/op_reshape_bones.hpp:
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/bits/hash_bytes.h:
 
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/sysroot/usr/include/asm-generic/errno-base.h:
-
-tmp/include/armadillo_bits/fn_qr.hpp:
 
 tmp/include/armadillo_bits/diskio_meat.hpp:
 
@@ -1992,6 +2049,12 @@ tmp/include/armadillo_bits/SpSubview_bones.hpp:
 
 tmp/include/armadillo_bits/mtSpGlue_bones.hpp:
 
+tmp/include/armadillo_bits/fn_vectorise.hpp:
+
+/home/pfromm/miniconda3/x86_64-conda-linux-gnu/sysroot/usr/include/gnu/stubs-64.h:
+
+tmp/include/armadillo_bits/SpSubview_col_list_bones.hpp:
+
 tmp/include/armadillo_bits/spglue_kron_meat.hpp:
 
 /home/pfromm/miniconda3/lib/gcc/x86_64-conda-linux-gnu/10.4.0/include/mmintrin.h:
@@ -2001,6 +2064,8 @@ tmp/include/armadillo_bits/spdiagview_bones.hpp:
 tmp/include/armadillo_bits/op_sort_meat.hpp:
 
 tmp/include/armadillo_bits/fn_trunc_log.hpp:
+
+tmp/include/armadillo_bits/newarp_SparseGenRealShiftSolve_bones.hpp:
 
 tmp/include/armadillo_bits/subview_bones.hpp:
 
@@ -2078,7 +2143,7 @@ tmp/include/armadillo_bits/fn_trig.hpp:
 
 tmp/include/armadillo_bits/Gen_bones.hpp:
 
-tmp/include/armadillo_bits/fn_strans.hpp:
+tmp/include/armadillo_bits/newarp_SparseGenRealShiftSolve_meat.hpp:
 
 tmp/include/armadillo_bits/hdf5_misc.hpp:
 
@@ -2102,6 +2167,12 @@ tmp/include/armadillo_bits/op_sort_index_bones.hpp:
 
 tmp/include/armadillo_bits/op_sum_bones.hpp:
 
+tmp/include/armadillo_bits/fn_interp2.hpp:
+
+tmp/include/armadillo_bits/fn_svd.hpp:
+
+tmp/include/armadillo_bits/op_stddev_bones.hpp:
+
 tmp/include/armadillo_bits/subview_cube_meat.hpp:
 
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/bits/functexcept.h:
@@ -2113,6 +2184,10 @@ tmp/include/armadillo_bits/Glue_bones.hpp:
 tmp/include/armadillo_bits/op_repelem_bones.hpp:
 
 tmp/include/armadillo_bits/op_resize_bones.hpp:
+
+tmp/include/armadillo_bits/fn_qr.hpp:
+
+tmp/include/armadillo_bits/newarp_SymEigsSolver_bones.hpp:
 
 tmp/include/armadillo_bits/translate_fftw3.hpp:
 
@@ -2163,8 +2238,6 @@ tmp/include/armadillo_bits/op_all_bones.hpp:
 tmp/include/armadillo_bits/op_normalise_bones.hpp:
 
 tmp/include/armadillo_bits/op_logmat_bones.hpp:
-
-tmp/include/armadillo_bits/fn_chol.hpp:
 
 tmp/include/armadillo_bits/fn_shift.hpp:
 
@@ -2243,6 +2316,12 @@ tmp/include/armadillo_bits/spop_vectorise_bones.hpp:
 tmp/include/armadillo_bits/trimat_helper.hpp:
 
 tmp/include/armadillo_bits/glue_toeplitz_bones.hpp:
+
+tmp/include/armadillo_bits/fn_polyfit.hpp:
+
+/home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/map:
+
+tmp/include/armadillo_bits/newarp_EigsSelect.hpp:
 
 tmp/include/armadillo_bits/glue_max_bones.hpp:
 
@@ -2340,6 +2419,26 @@ tmp/include/armadillo_bits/op_sp_plus_bones.hpp:
 
 tmp/include/armadillo_bits/spsolve_factoriser_bones.hpp:
 
+tmp/include/armadillo_bits/newarp_DenseGenMatProd_bones.hpp:
+
+tmp/include/armadillo_bits/newarp_SparseGenMatProd_bones.hpp:
+
+/home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/cstdlib:
+
+tmp/include/armadillo_bits/newarp_DoubleShiftQR_bones.hpp:
+
+tmp/include/armadillo_bits/BaseCube_meat.hpp:
+
+tmp/include/armadillo_bits/newarp_GenEigsSolver_bones.hpp:
+
+tmp/include/armadillo_bits/diagmat_proxy.hpp:
+
+tmp/include/armadillo_bits/op_orth_null_meat.hpp:
+
+tmp/include/armadillo_bits/newarp_TridiagEigen_bones.hpp:
+
+tmp/include/armadillo_bits/newarp_UpperHessenbergEigen_bones.hpp:
+
 tmp/include/armadillo_bits/memory.hpp:
 
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/x86_64-conda-linux-gnu/bits/c++locale.h:
@@ -2348,11 +2447,7 @@ tmp/include/armadillo_bits/operator_relational.hpp:
 
 tmp/include/armadillo_bits/SpProxy.hpp:
 
-tmp/include/armadillo_bits/diagmat_proxy.hpp:
-
 tmp/include/armadillo_bits/strip.hpp:
-
-tmp/include/armadillo_bits/fn_repmat.hpp:
 
 /home/pfromm/miniconda3/x86_64-conda-linux-gnu/include/c++/10.4.0/bits/stl_algo.h:
 
@@ -2361,8 +2456,6 @@ tmp/include/armadillo_bits/arma_ostream_bones.hpp:
 tmp/include/armadillo_bits/operator_minus.hpp:
 
 tmp/include/armadillo_bits/operator_div.hpp:
-
-tmp/include/armadillo_bits/fn_cov.hpp:
 
 tmp/include/armadillo_bits/glue_times_meat.hpp:
 
@@ -2453,27 +2546,3 @@ tmp/include/armadillo_bits/fn_randu.hpp:
 tmp/include/armadillo_bits/fn_mean.hpp:
 
 tmp/include/armadillo_bits/fn_var.hpp:
-
-tmp/include/armadillo_bits/fn_interp2.hpp:
-
-tmp/include/armadillo_bits/op_stddev_bones.hpp:
-
-tmp/include/armadillo_bits/fn_svd.hpp:
-
-tmp/include/armadillo_bits/SizeMat_bones.hpp:
-
-tmp/include/armadillo_bits/fn_solve.hpp:
-
-tmp/include/armadillo_bits/spglue_join_meat.hpp:
-
-tmp/include/armadillo_bits/fn_repelem.hpp:
-
-tmp/include/armadillo_bits/op_fft_bones.hpp:
-
-tmp/include/armadillo_bits/fn_reshape.hpp:
-
-/home/pfromm/miniconda3/x86_64-conda-linux-gnu/sysroot/usr/include/gnu/stubs-64.h:
-
-tmp/include/armadillo_bits/SpSubview_col_list_bones.hpp:
-
-tmp/include/armadillo_bits/fn_vectorise.hpp:

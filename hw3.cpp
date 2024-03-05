@@ -22,13 +22,16 @@ struct Function
     vector<double> R;
     vector<double> norms;
     vector<double> coefs;
+    vector<double> exponets;
     int l;
     int m;
     int n;
     double int_pot;
+    vector<int> orbital;
 
-    Function(vector<double> R, vector<double> norms, vector<double> coefs, int l, int m, int n, double int_pot) : R(R), norms(norms), coefs(coefs), l(l), m(m), n(n), int_pot(int_pot)
+    Function(vector<double> R, vector<double> norms, vector<double> coefs, vector<double> exponets, int l, int m, int n, double int_pot, vector<int> orbital) : R(R), norms(norms), coefs(coefs), exponets(exponets), l(l), m(m), n(n), int_pot(int_pot), orbital(orbital)
     {
+
         // R.resize(3, 0.0);
         // coefs.resize(3, 0.0);
         // norms.resize(3, 0.0);
@@ -54,6 +57,10 @@ public:
     void calc_HAM();
     void calc_C();
     void calc_e();
+    void print_S();
+    void print_HAM();
+    void print_X();
+    void print_H();
     Mat<double> get_S();
     Mat<double> get_H();
     Mat<double> get_X();
@@ -62,10 +69,12 @@ public:
     Mat<double> get_e();
     double get_total_energy();
     void add_norms();
+    void test();
 
 protected:
     int num_atoms;
-    vector<double> exponets;
+    vector<double> exponets_H;
+    vector<double> exponets_C;
     vector<double> coefs_1s;
     vector<double> coefs_2s;
     vector<double> coefs_3p;
@@ -99,6 +108,23 @@ huckle::huckle(string xyz_filepath)
     a = C_atoms.size();
     b = H_atoms.size();
     N = 4 * a + b;
+
+    try
+    {
+
+        if (b % 2 != 0)
+        {
+            throw runtime_error("Valance electrons must be in pairs");
+        }
+
+        // Code here would not execute if an exception is thrown above
+    }
+    catch (const runtime_error &e)
+    {
+        cerr << "An error occurred: " << e.what() << endl;
+        cerr << " 2a + b/2 for C_aH_b must be an interger value." << endl;
+        // The program continues here after handling the exception
+    }
 
     n = 2 * a + (b / 2);
     //}
@@ -238,7 +264,7 @@ void huckle::read_basis(string filepath, int atomic_num)
             {
                 myfile >> exponet;
                 myfile >> coef;
-                exponets.push_back(exponet);
+                exponets_H.push_back(exponet);
                 coefs_1s.push_back(coef);
             }
         }
@@ -248,7 +274,7 @@ void huckle::read_basis(string filepath, int atomic_num)
             for (int i = 0; i < 3; i++)
             {
                 myfile >> exponet;
-                exponets.push_back(exponet);
+                exponets_C.push_back(exponet);
                 myfile >> coef;
                 coefs_2s.push_back(coef);
                 myfile >> coef;
@@ -258,106 +284,58 @@ void huckle::read_basis(string filepath, int atomic_num)
     }
 }
 
-// void huckle::setup(string xyz_filepath, vector<pair<string, int>> basis_filepaths)
-// {
-
-//     read_xyz(xyz_filepath);
-
-//     for (int i = 0; i < basis_filepaths.size(); i++)
-//     {
-//         read_basis(basis_filepaths[i].first, basis_filepaths[i].second);
-//     }
-
-//     //int c = 6;
-//     a = C_atoms.size();
-//     b = H_atoms.size();
-//     N = 4 * a + b;
-
-//     // if (b % 2 != 0)
-//     // {
-//     //     // throw error
-//     //     contine;
-//     // }
-//     // else
-//     //{
-//     n = 2 * a + (b / 2);
-//     //}
-
-//     X(N, N);
-//     S(N, N);
-//     H(N, N);
-//     HAM(N, N);
-//     C(N, N);
-//     e.resize(N);
-// }
-
-// double huckle::primitive_gaussian(double exponet, int n, int l, int m, vector<double> r, vector<double> Rc)
-// {
-//     double distance = pow(pow(r[0] - Rc[0], 2) + pow(r[1] - Rc[1], 2) + pow(r[2] - Rc[2], 2), 0.5);
-//     return pow(r[0] - Rc[0], l) * pow(r[1] - Rc[1], m) * pow(r[2] - Rc[2], n) * exp(-exponet * distance);
-// }
-
 void huckle::calc_basis()
 {
 
-    vector<Function> basis;
-
-    for (int i = 1; i < (b + 1) / 2; i++)
+    for (int i = 0; i < b; i++)
     {
 
         vector<double> norms;
-        Function fun = Function(H_atoms[i - 1], norms, coefs_1s, 0, 0, 1, -13.6);
+        vector<int> orb = {0, 0, 0};
+        Function fun = Function(H_atoms[i], norms, coefs_1s, exponets_H, 0, 0, 1, -13.6, orb);
         basis.push_back(fun);
     }
 
-    for (int i = 1; i < a / 2; i++)
+    for (int i = 0; i < a; i++)
     {
-        // vector<string> orbs = {"3p_x", "3p_y", "3p_z"};
-        // int count = 0;
+
         vector<double>
             norms;
-        Function fun = Function(H_atoms[i - 1], norms, coefs_2s, 0, 0, 0, -21.4);
+        vector<int> orb = {0, 0, 0};
+        Function fun = Function(H_atoms[i], norms, coefs_2s, exponets_C, 0, 0, 0, -21.4, orb);
+        basis.push_back(fun);
+
+        int count = 0;
         for (int m = -1; m < 2; m++)
         {
             vector<double> norms2;
-            Function fun = Function(H_atoms[i - 1], norms2, coefs_3p, 1, 3, m, -11.4);
+            vector<int> orb2;
 
-            basis.push_back(fun);
+            if (count == 0)
+            {
+                orb2 = {1, 0, 0};
+            }
+            else if (count == 1)
+            {
+                orb2 = {0, 1, 0};
+            }
+
+            else if (count == 2)
+            {
+                orb2 = {0, 0, 1};
+            }
+
+            Function fun2 = Function(C_atoms[i], norms2, coefs_3p, exponets_C, 1, 3, m, -11.4, orb2);
+
+            basis.push_back(fun2);
+
+            count++;
         }
     }
-
-    this->basis = basis;
-    reverse(basis.begin(), basis.end());
-
-    for (int i = 0; i < basis.size(); i)
-        ;
-    i < basis.size();
-    i
 }
 
 void huckle::add_norms()
 {
-
-    // for (int i = 0; i < N; i++)
-    // {
-    //         Function u = basis[i];
-    //         double S_uu
-
-    //         for (int k = 0; k < 3; k++)
-    //         {
-
-    //                 double overlap = 1;
-
-    //                 for (int z = 0; z < 3; z++)
-    //                 {
-    //                     overlap *= overlap_integral_1d_analytical(u.R[z], u.R[z], u.l, u.l, exponets[k], exponets[k]);
-    //                 }
-
-    //                 //S.at(i, j) += overlap * u.coefs[k] * v.coefs[l];
-    //                 double norm_k = 1 / pow(overlap, 0.5);
-    //                 u.norms.push_back(norm_k);
-    //         }
-    //     }}
 
     for (int k = 0; k < basis.size(); k++)
     {
@@ -368,32 +346,23 @@ void huckle::add_norms()
 
             for (int j = 0; j < 3; j++)
             {
-                overlap *= overlap_integral_1d_analytical(fun.R[j], fun.R[j], fun.l, fun.l, exponets[i], exponets[i]);
+                overlap *= overlap_integral_1d_analytical(fun.R[j], fun.R[j], fun.orbital[j], fun.orbital[j], fun.exponets[i], fun.exponets[i]);
             }
             fun.norms.push_back(1 / pow(overlap, 0.5));
         }
     }
-    cout << basis.size() << endl;
 }
 
 void huckle::calc_S()
 {
-
-    // Mat<double> S = mat(N, N);
     for (int i = 0; i < N; i++)
     {
-        for (int j = i + 1; j < N + (i + 1); j++)
+        for (int j = 0; j < N; j++)
         {
-            // int jj = i + 1;
-            // if (j > N - 1)
-            // {
-            //     jj = 0;
-
-            // }
 
             S.at(i, j) = 0.0;
-            Function u = basis[i];
-            Function v = basis[j];
+            Function &u = basis[i];
+            Function &v = basis[j];
 
             for (int k = 0; k < 3; k++)
             {
@@ -403,13 +372,25 @@ void huckle::calc_S()
 
                     for (int z = 0; z < 3; z++)
                     {
-                        overlap *= overlap_integral_1d_analytical(u.R[z], v.R[z], u.l, v.l, exponets[k], exponets[l]);
+                        overlap *= overlap_integral_1d_analytical(u.R[z], v.R[z], u.orbital[z], v.orbital[z], u.exponets[k], v.exponets[l]);
                     }
 
                     S.at(i, j) += overlap * u.norms[k] * v.norms[l] * u.coefs[k] * v.coefs[l];
                 }
             }
         }
+    }
+}
+
+void huckle::print_S()
+{
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            cout << S.at(i, j) << " ";
+        }
+        cout << endl;
     }
 }
 
@@ -423,7 +404,7 @@ Mat<double> huckle::get_S()
 void huckle::calc_X()
 {
 
-    arma::mat P;
+    mat P;
     arma::Mat<double> D = arma::zeros(N, N);
     vec v;
 
@@ -431,17 +412,25 @@ void huckle::calc_X()
 
     for (int i = 0; i < v.size(); i++)
     {
-        if (abs(v(i)) != 0)
+        if (abs(v(i)) > numeric_limits<double>::epsilon())
         {
             D.at(i, i) = 1 / pow(abs(v(i)), 0.5);
-        }
-        else
-        {
-            D.at(i, i) = abs(v(i));
         }
     }
 
     X = P * D * P.t();
+}
+
+void huckle::print_X()
+{
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            cout << X(i, j) << " ";
+        }
+        cout << endl;
+    }
 }
 
 Mat<double> huckle::get_X()
@@ -452,22 +441,28 @@ Mat<double> huckle::get_X()
 
 void huckle::calc_H()
 {
-    // arma::Mat<double> H = arma::zeros(N, N);
+
+    for (int i = 0; i < N; i++)
+    {
+        Function &u = basis[i];
+        H.at(i, i) = u.int_pot;
+    }
+
     for (int i = 0; i < N; i++)
     {
         for (int j = 0; j < N; j++)
 
         {
-            Function u = basis[i];
-            Function v = basis[j];
-            if (i != j)
+            Function &k = basis[i];
+            Function &v = basis[j];
+            if (j != i)
             {
 
-                H.at(i, j) = (1.75 / 2) * (u.int_pot + v.int_pot) * S.at(i, j);
+                H.at(i, j) = (1.75 / 2) * (H(i, i) + H(j, j)) * S(i, j);
             }
             else
             {
-                H.at(i, j) = u.int_pot;
+                continue;
             }
         }
     }
@@ -479,9 +474,21 @@ Mat<double> huckle::get_H()
     return H;
 }
 
+void huckle::print_H()
+{
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            cout << H.at(i, j) << " ";
+        }
+        cout << endl;
+    }
+}
+
 void huckle::calc_HAM()
 {
-    HAM = X.t() * H * X;
+    HAM = X * H * X.t();
 }
 
 Mat<double> huckle::get_HAM()
@@ -501,6 +508,18 @@ void huckle::calc_C()
     C = X * V;
 }
 
+void huckle::print_HAM()
+{
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            cout << HAM(i, j) << " ";
+        }
+        cout << endl;
+    }
+}
+
 Mat<double> huckle::get_C()
 {
     calc_C();
@@ -517,6 +536,18 @@ double huckle::get_total_energy()
     return E;
 }
 
+// void huckle::test()
+// {
+
+//     arma::mat22 ham;
+//     ham << -13.6000 << -15.7050 << arma::endr
+//         << -15.7050 << -13.6000 << arma::endr;
+
+//     mat h;
+//     h = X * ham * X.t();
+//     h.print();
+// }
+
 int main()
 {
     // #1
@@ -525,14 +556,22 @@ int main()
     H2.calc_basis();
     H2.add_norms();
     H2.calc_S();
+    // H2.print_S();
     H2.calc_X();
+    H2.calc_H();
+    // H2.print_X();
     H2.calc_HAM();
+    // H2.print_HAM();
+
     H2.calc_e();
+
+    // H2.test();
+    // H2.print_H();
 
     double H2_energy = H2.get_total_energy();
     cout << "The total energy of H2 is: " << H2_energy << " eV." << endl;
 
-    double H2_bond_energy = H2_energy - (2 * -27.2);
+    double H2_bond_energy = H2_energy - (-27.2);
     cout << "The bond energy of H2 is: " << H2_bond_energy << " eV." << endl;
 
     // #2
@@ -541,6 +580,7 @@ int main()
     C2H2.add_norms();
     C2H2.calc_S();
     C2H2.calc_X();
+    C2H2.calc_H();
     C2H2.calc_HAM();
     C2H2.calc_e();
 
@@ -549,6 +589,7 @@ int main()
     C2H4.add_norms();
     C2H4.calc_S();
     C2H4.calc_X();
+    C2H4.calc_H();
     C2H4.calc_HAM();
     C2H4.calc_e();
 
